@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProvaPub.Models;
-using ProvaPub.Repository;
-using ProvaPub.Services;
+using ProvaPub.Models.Payments;
+using ProvaPub.Services.Interfaces;
 
 namespace ProvaPub.Controllers
 {
-	
+
 	/// <summary>
 	/// Esse teste simula um pagamento de uma compra.
 	/// O método PayOrder aceita diversas formas de pagamento. Dentro desse método é feita uma estrutura de diversos "if" para cada um deles.
@@ -16,10 +16,18 @@ namespace ProvaPub.Controllers
 	[Route("[controller]")]
 	public class Parte3Controller :  ControllerBase
 	{
-		[HttpGet("orders")]
-		public async Task<Order> PlaceOrder(string paymentMethod, decimal paymentValue, int customerId)
+
+		private readonly IOrderService _orderService;
+
+		public Parte3Controller(IOrderService orderService)
 		{
-			return await new OrderService().PayOrder(paymentMethod, paymentValue, customerId);
+			_orderService = orderService;
 		}
+
+        [HttpGet("orders")]
+		public async Task<Order> PlaceOrder(PaymentMethods paymentMethod, decimal paymentValue, int customerId)
+		{
+			return await _orderService.PayOrder(paymentMethod, paymentValue, customerId);
+        }
 	}
 }
