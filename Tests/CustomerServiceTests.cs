@@ -9,8 +9,12 @@ namespace ProvaPub.Tests
 
     public class CustomerServiceTests
     {
-        [Fact]
-        public async Task CanPurchase_CustomerIdPurchaseValueInvalid_ReturnArgumentOutOfRangeException()
+        [Theory]
+        [InlineData(0, 0)]
+        [InlineData(-1, -1)]
+        [InlineData(1, 0)]
+        [InlineData(0, 1)]
+        public async Task CanPurchase_CustomerIdPurchaseValueInvalid_ReturnArgumentOutOfRangeException(int customerId, decimal purchaseValue)
         {
 
             //Arrange
@@ -19,16 +23,10 @@ namespace ProvaPub.Tests
             var customerService = new CustomerService(customerRepository.Object, orderRepository.Object);
 
             //Act
-            Task act1() => customerService.CanPurchase(0, 0);
-            Task act2() => customerService.CanPurchase(-1, -1);
-            Task act3() => customerService.CanPurchase(1, 0);
-            Task act4() => customerService.CanPurchase(0, 1);
+            Task act() => customerService.CanPurchase(customerId, purchaseValue);            
 
             //Asserts
-            await Assert.ThrowsAnyAsync<ArgumentOutOfRangeException>(act1);
-            await Assert.ThrowsAnyAsync<ArgumentOutOfRangeException>(act2);
-            await Assert.ThrowsAnyAsync<ArgumentOutOfRangeException>(act3);
-            await Assert.ThrowsAnyAsync<ArgumentOutOfRangeException>(act4);
+            await Assert.ThrowsAnyAsync<ArgumentOutOfRangeException>(act);
         }
 
         [Fact]
