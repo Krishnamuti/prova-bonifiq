@@ -1,4 +1,4 @@
-# Prova BonifiQ Backend
+# Prova Backend
 Olá!
 Essa prova foi criada para testar suas habilidades com .NET e C# em geral. 
 Por favor, siga atentamente as instruções antes de começar, ok?
@@ -88,13 +88,4 @@ Verifique o arquivo ```CanPurchase``` da classe ```CustomerService``` e note que
 Seu trabalho aqui será:
 1. Crie testes unitários para este método. Tente obter o máximo de cobertura possível. Se precisar, pode rearquitetar o código para facilitar nos testes.
 
-Você pode utilizar qualquer framework de testes que desejar. 
-
-## Como entregar
-Oba! Terminou tudinho? Agora faça o seguinte:
-1. Faça ```push``` para seu repositório (sim, aquele que você criou lá em cima. Nada de fork).
-2. Forneça acesso ao repositório no GitHub para o usuário ```sandercamargo```
-2. Preencha o formulário abaixo:
-[https://forms.gle/mHipmDJJnij7FRHE7](https://forms.gle/mHipmDJJnij7FRHE7)
-
-A gente te responde em breve, ok?
+Você pode utilizar qualquer framework de testes que desejar.
