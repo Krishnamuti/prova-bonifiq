@@ -1,6 +1,8 @@
-﻿namespace ProvaPub.Models.Payments.Methods
+﻿using ProvaPub.Models.Interfaces;
+
+namespace ProvaPub.Models.Payments.Methods
 {
-    public class Pix : Payment
+    public class Pix : Payment, IPayment
     {
         public override async Task<Order> PayOrder(decimal paymentValue, int customerId)
         {

@@ -1,9 +1,10 @@
-﻿using ProvaPub.Models.Payments;
+﻿using ProvaPub.Models.Interfaces;
+using ProvaPub.Models.Payments;
 
 namespace ProvaPub.Services.Interfaces
 {
     public interface IPaymentService
     {
-        Payment GetPaymentMethod(PaymentMethods paymentMethod);
+        IPayment GetPaymentMethod(PaymentMethods paymentMethod);
     }
 }

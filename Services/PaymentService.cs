@@ -1,6 +1,7 @@
 ﻿using ProvaPub.Models.Payments.Methods;
 using ProvaPub.Models.Payments;
 using ProvaPub.Services.Interfaces;
+using ProvaPub.Models.Interfaces;
 
 namespace ProvaPub.Services
 {
@@ -11,20 +12,28 @@ namespace ProvaPub.Services
 
         }
 
-        public Payment GetPaymentMethod(PaymentMethods paymentMethod)
+        private IPayment payment;
+
+        private void SetPayment(IPayment _payment)
         {
+            payment = _payment;
+        }
+
+        public IPayment GetPaymentMethod(PaymentMethods paymentMethod)
+        {
+
             switch (paymentMethod)
             {
                 case PaymentMethods.PIX:
-                    return new Pix();
+                    SetPayment(Pix);
                 case PaymentMethods.CREDITCARD:
-                    return new CreditCard();
+                    payment = new CreditCard();
                 case PaymentMethods.PAYPAL:
-                    return new Paypal();
+                    payment = new Paypal();
                 default:
-                    break;
+                    throw new Exception("Forma de pagamento não implementada");
             }
-            throw new Exception("Forma de pagamento não implementada");
+            return payment;
         }
     }
 }
