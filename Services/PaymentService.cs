@@ -25,15 +25,14 @@ namespace ProvaPub.Services
             switch (paymentMethod)
             {
                 case PaymentMethods.PIX:
-                    SetPayment(Pix);
+                    return new Pix();
                 case PaymentMethods.CREDITCARD:
-                    payment = new CreditCard();
+                    return new CreditCard();
                 case PaymentMethods.PAYPAL:
-                    payment = new Paypal();
+                    return new Paypal();
                 default:
                     throw new Exception("Forma de pagamento não implementada");
             }
-            return payment;
         }
     }
 }
